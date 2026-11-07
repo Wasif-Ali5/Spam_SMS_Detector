@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>SMS Spam Detector</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+
+    <header class="hero">
+      <span class="pill">TF-IDF · Logistic Regression · FastAPI</span>
+      <h1>SMS <span class="gradient">Spam Detector</span></h1>
+      <p class="subtitle">Paste a text message and the model will tell you whether it is spam or a genuine message.</p>
+    </header>
+
+    <section class="card">
+      <form id="form">
+        <label for="message">Your message</label>
+        <textarea id="message" rows="5" maxlength="1000" placeholder="Type or paste an SMS here..." required></textarea>
+        <div class="row">
+          <span id="counter" class="muted">0 / 1000</span>
+          <button id="submit" type="submit">Check message</button>
+        </div>
+      </form>
+
+      <div class="examples">
+        <span class="muted">Try an example:</span>
+        <button type="button" class="chip" data-text="URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot! Txt the word CLAIM to 81010 now">Spam example</button>
+        <button type="button" class="chip" data-text="Ok I will call you after lunch, see you at home">Ham example</button>
+      </div>
+
+      <div id="error" class="error hidden"></div>
+
+      <div id="result" class="result hidden">
+        <div class="verdict-row">
+          <span id="badge" class="badge"></span>
+          <span id="probText" class="muted"></span>
+        </div>
+        <div class="bar"><div id="barFill" class="bar-fill"></div></div>
+        <p class="muted small label-top">Words that influenced the decision</p>
+        <div id="words" class="words"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Model performance <span class="muted small">on an unseen test set</span></h2>
+      <div id="metrics" class="metrics"></div>
+      <h3>Confusion matrix</h3>
+      <div id="matrix" class="matrix"></div>
+      <p id="note" class="muted small"></p>
+    </section>
+
+    <section class="steps">
+      <div class="step"><span class="num">1</span><h4>Clean</h4><p>Lowercase the text, replace links and numbers, remove symbols.</p></div>
+      <div class="step"><span class="num">2</span><h4>Vectorize</h4><p>TF-IDF turns each message into numbers based on word importance.</p></div>
+      <div class="step"><span class="num">3</span><h4>Classify</h4><p>Logistic Regression gives the probability that the message is spam.</p></div>
+    </section>
+
+    <footer class="muted small">Built with scikit-learn and FastAPI · Hosted on Vercel</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

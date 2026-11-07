@@ -1,0 +1,8 @@
+venv/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+spam.csv
+spam_cleaned.xls
+*.xls
+*.xlsx
